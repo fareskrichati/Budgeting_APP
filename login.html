@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="login-shell">
+      <section class="login-panel" aria-label="Budget login">
+        <div>
+          <p class="eyebrow">Private budget</p>
+          <h1 data-budget-title>Budget Desk</h1>
+        </div>
+
+        <form id="loginForm" class="login-form">
+          <label class="field">
+            <span>Email</span>
+            <input id="loginEmail" type="email" placeholder="you@example.com" required />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input id="loginPassword" type="password" required />
+          </label>
+
+          <p id="loginMessage" class="form-message" aria-live="polite"></p>
+          <button id="loginButton" type="submit" class="primary-button">Unlock</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

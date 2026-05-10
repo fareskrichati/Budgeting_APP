@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="page-nav" aria-label="Budget pages">
+        <a class="nav-link" href="index.html">Accounts</a>
+        <a class="nav-link" href="personal.html">Personal Budget</a>
+        <a class="nav-link" href="work.html">Work Expenses</a>
+        <a class="nav-link" href="reports.html">Calendar & Graph</a>
+        <a class="nav-link" href="paycheck.html">Paycheck Calculator</a>
+        <a class="nav-link active" href="settings.html">Settings</a>
+      </nav>
+
+      <section class="summary-panel" aria-label="Budget settings summary">
+        <div>
+          <p class="eyebrow">Website settings</p>
+          <h1 data-budget-title>Budget Desk</h1>
+        </div>
+
+        <div class="summary-grid work-summary-grid">
+          <div class="metric">
+            <span>Main bank</span>
+            <strong id="settingsMainBank">Chase</strong>
+          </div>
+
+          <div class="metric">
+            <span>Investing</span>
+            <strong id="settingsInvesting">Robinhood</strong>
+          </div>
+
+          <div class="metric">
+            <span>Personalized for</span>
+            <strong id="settingsName">You</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="entry-section settings-section" aria-label="Budget website settings">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Customize</p>
+            <h2>Names and labels</h2>
+          </div>
+          <button id="resetSettings" type="button" class="ghost-button">Reset</button>
+        </div>
+
+        <form id="settingsForm" class="settings-form">
+          <label class="field">
+            <span>Your name</span>
+            <input id="userNameInput" type="text" placeholder="Fares" />
+          </label>
+
+          <label class="field">
+            <span>First bank</span>
+            <input id="chaseNameInput" type="text" required />
+          </label>
+
+          <label class="field">
+            <span>Second bank</span>
+            <input id="sofiNameInput" type="text" required />
+          </label>
+
+          <label class="field">
+            <span>Third bank</span>
+            <input id="missionNameInput" type="text" required />
+          </label>
+
+          <label class="field">
+            <span>Investing name</span>
+            <input id="investmentNameInput" type="text" required />
+          </label>
+
+          <button type="submit" class="primary-button">Save settings</button>
+        </form>
+      </section>
+
+      <section class="entry-section settings-section" aria-label="Login settings">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Login</p>
+            <h2>Security settings</h2>
+          </div>
+          <button id="logoutButton" type="button" class="ghost-button">Log out</button>
+        </div>
+
+        <div class="settings-form">
+          <label class="field">
+            <span>Saved email</span>
+            <input id="savedEmailInput" type="email" readonly />
+          </label>
+
+          <label class="field">
+            <span>Saved password</span>
+            <input id="savedPasswordInput" type="password" readonly />
+          </label>
+        </div>
+
+        <form id="revealPasswordForm" class="settings-form auth-form">
+          <label class="field">
+            <span>Enter password to reveal</span>
+            <input id="revealPasswordInput" type="password" required />
+          </label>
+
+          <button type="submit" class="ghost-button">Reveal password</button>
+        </form>
+
+        <form id="changePasswordForm" class="settings-form auth-form">
+          <label class="field">
+            <span>Original password</span>
+            <input id="originalPasswordInput" type="password" required />
+          </label>
+
+          <label class="field">
+            <span>New password</span>
+            <input id="newPasswordInput" type="password" required />
+          </label>
+
+          <button type="submit" class="primary-button">Change password</button>
+        </form>
+
+        <p id="authMessage" class="form-message" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>

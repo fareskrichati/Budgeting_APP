@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Expenses</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="page-nav" aria-label="Budget pages">
+        <a class="nav-link" href="index.html">Accounts</a>
+        <a class="nav-link" href="personal.html">Personal Budget</a>
+        <a class="nav-link active" href="work.html">Work Expenses</a>
+        <a class="nav-link" href="reports.html">Calendar & Graph</a>
+        <a class="nav-link" href="paycheck.html">Paycheck Calculator</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+      </nav>
+
+      <section class="summary-panel" aria-label="Work expense summary">
+        <div>
+          <p class="eyebrow">Work expenses</p>
+          <h1>Expense Log</h1>
+        </div>
+
+        <div class="summary-grid work-summary-grid">
+          <div class="metric">
+            <span>Total submitted</span>
+            <strong id="workTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Reimbursed</span>
+            <strong id="reimbursedTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Outstanding</span>
+            <strong id="outstandingTotal">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="chart-section" aria-label="Work expense chart">
+        <div class="chart-wrap">
+          <canvas id="workChart" width="360" height="360" aria-label="Work expenses by category pie chart"></canvas>
+          <div class="chart-center">
+            <span>Total</span>
+            <strong id="chartTotal">$0</strong>
+          </div>
+        </div>
+        <div id="workLegend" class="legend" aria-label="Work expense category legend"></div>
+      </section>
+
+      <section class="entry-section" aria-label="Work expense entries">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Receipts</p>
+            <h2>Receipt PDF maker</h2>
+          </div>
+          <div class="section-actions">
+            <button id="printAllReceipts" type="button" class="ghost-button">PDF all</button>
+            <button id="clearWorkButton" type="button" class="ghost-button">Clear all</button>
+          </div>
+        </div>
+
+        <form id="workForm" class="statement-form work-form">
+          <label class="field">
+            <span>Date</span>
+            <input id="dateInput" type="date" required />
+          </label>
+
+          <label class="field wide">
+            <span>Vendor or description</span>
+            <input id="descriptionInput" type="text" placeholder="Hotel, supplies, client lunch..." required />
+          </label>
+
+          <label class="field">
+            <span>Receipt number</span>
+            <input id="receiptInput" type="text" placeholder="Optional" />
+          </label>
+
+          <label class="field">
+            <span>Category</span>
+            <select id="categoryInput">
+              <option>Travel</option>
+              <option>Meals</option>
+              <option>Supplies</option>
+              <option>Mileage</option>
+              <option>Software</option>
+              <option>Lodging</option>
+              <option>Client</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Amount</span>
+            <input id="amountInput" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+          </label>
+
+          <label class="field">
+            <span>Status</span>
+            <select id="statusInput">
+              <option>Submitted</option>
+              <option>Reimbursed</option>
+            </select>
+          </label>
+
+          <label class="field wide">
+            <span>Notes</span>
+            <input id="notesInput" type="text" placeholder="Project, client, reason..." />
+          </label>
+
+          <button type="submit" class="primary-button">Add</button>
+        </form>
+
+        <div class="table-wrap">
+          <table class="work-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Receipt</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="workRows"></tbody>
+          </table>
+          <p id="emptyState" class="empty-state">No work expenses yet. Add one to start tracking reimbursements.</p>
+        </div>
+      </section>
+
+      <section id="receiptPrintArea" class="receipt-print-area" aria-label="Printable receipts"></section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="work.js"></script>
+  </body>
+</html>

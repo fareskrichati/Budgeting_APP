@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paycheck Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="page-nav" aria-label="Budget pages">
+        <a class="nav-link" href="index.html">Accounts</a>
+        <a class="nav-link" href="personal.html">Personal Budget</a>
+        <a class="nav-link" href="work.html">Work Expenses</a>
+        <a class="nav-link" href="reports.html">Calendar & Graph</a>
+        <a class="nav-link active" href="paycheck.html">Paycheck Calculator</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+      </nav>
+
+      <section class="summary-panel" aria-label="Paycheck calculator summary">
+        <div>
+          <p class="eyebrow">Two-week pay</p>
+          <h1>Paycheck Calculator</h1>
+        </div>
+
+        <div class="summary-grid work-summary-grid">
+          <div class="metric">
+            <span>Total hours</span>
+            <strong id="totalHours">0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Gross pay</span>
+            <strong id="grossPay">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Take-home</span>
+            <strong id="takeHomePay">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="entry-section calculator-section" aria-label="Paycheck calculator">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Hours log</p>
+            <h2>Log two weeks</h2>
+          </div>
+          <button id="clearPaycheck" type="button" class="ghost-button">Clear</button>
+        </div>
+
+        <form id="paycheckCalculatorForm" class="calculator-settings">
+          <label class="field">
+            <span>Estimated withholding %</span>
+            <input id="withholdingRate" type="number" min="0" max="100" step="1" value="15" />
+          </label>
+
+          <label class="field">
+            <span>Hourly rate 1</span>
+            <input id="hourlyRateOne" type="number" min="0" step="0.01" placeholder="0.00" />
+          </label>
+
+          <label class="field">
+            <span>Hourly rate 2</span>
+            <input id="hourlyRateTwo" type="number" min="0" step="0.01" placeholder="0.00" />
+          </label>
+
+          <label class="field">
+            <span>Start date</span>
+            <input id="periodStart" type="date" />
+          </label>
+
+          <label class="field">
+            <span>End date</span>
+            <input id="periodEnd" type="date" />
+          </label>
+        </form>
+
+        <div class="rate-log-section">
+          <div>
+            <p class="eyebrow">Rate 1</p>
+            <h3>Hours at rate 1</h3>
+          </div>
+          <div id="hoursGridOne" class="hours-grid" aria-label="Two-week hours input for rate one"></div>
+        </div>
+
+        <div class="rate-log-section">
+          <div>
+            <p class="eyebrow">Rate 2</p>
+            <h3>Hours at rate 2</h3>
+          </div>
+          <div id="hoursGridTwo" class="hours-grid" aria-label="Two-week hours input for rate two"></div>
+        </div>
+
+        <div class="paycheck-breakdown" aria-label="Paycheck breakdown">
+          <div class="metric">
+            <span>Rate 1 pay</span>
+            <strong id="rateOnePay">$0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Rate 2 pay</span>
+            <strong id="rateTwoPay">$0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Withheld</span>
+            <strong id="withheldAmount">$0.00</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="paycheck.js"></script>
+  </body>
+</html>

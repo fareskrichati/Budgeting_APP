@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar & Graph</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="page-nav" aria-label="Budget pages">
+        <a class="nav-link" href="index.html">Accounts</a>
+        <a class="nav-link" href="personal.html">Personal Budget</a>
+        <a class="nav-link" href="work.html">Work Expenses</a>
+        <a class="nav-link active" href="reports.html">Calendar & Graph</a>
+        <a class="nav-link" href="paycheck.html">Paycheck Calculator</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+      </nav>
+
+      <section class="summary-panel" aria-label="Expense overview">
+        <div>
+          <p class="eyebrow">Overview</p>
+          <h1>Calendar & Graph</h1>
+        </div>
+
+        <div class="summary-grid work-summary-grid">
+          <div class="metric">
+            <span>This month</span>
+            <strong id="monthTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Personal</span>
+            <strong id="personalTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Work</span>
+            <strong id="workTotal">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="entry-section report-section" aria-label="Expense calendar">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Calendar</p>
+            <h2 id="calendarTitle">Month</h2>
+          </div>
+          <div class="calendar-controls">
+            <button id="prevMonth" type="button" class="ghost-button">Previous</button>
+            <button id="todayButton" type="button" class="ghost-button">Today</button>
+            <button id="nextMonth" type="button" class="ghost-button">Next</button>
+          </div>
+        </div>
+
+        <div class="calendar-grid calendar-weekdays" aria-hidden="true">
+          <span>Sun</span>
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+        </div>
+        <div id="calendarGrid" class="calendar-grid" aria-label="Monthly expense calendar"></div>
+      </section>
+
+      <section class="entry-section report-section" aria-label="Expense graph">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Graph</p>
+            <h2>Daily spending</h2>
+          </div>
+        </div>
+
+        <div class="bar-chart-wrap">
+          <canvas id="dailyChart" width="920" height="320" aria-label="Daily spending bar graph"></canvas>
+        </div>
+        <div class="chart-key" aria-label="Graph key">
+          <span><i class="key-dot personal-dot"></i>Personal</span>
+          <span><i class="key-dot work-dot"></i>Work</span>
+        </div>
+      </section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="reports.js"></script>
+  </body>
+</html>
