@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounts</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="page-nav" aria-label="Budget pages">
+        <a class="nav-link active" href="index.html">Accounts</a>
+        <a class="nav-link" href="personal.html">Personal Budget</a>
+        <a class="nav-link" href="work.html">Work Expenses</a>
+        <a class="nav-link" href="reports.html">Calendar & Graph</a>
+        <a class="nav-link" href="paycheck.html">Paycheck Calculator</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+      </nav>
+
+      <section class="summary-panel" aria-label="Account holdings summary">
+        <div>
+          <p class="eyebrow">Money holdings</p>
+          <h1 data-budget-title>Budget Desk</h1>
+        </div>
+
+        <div class="summary-grid holdings-summary-grid">
+          <div class="metric">
+            <span>Total holdings</span>
+            <strong id="totalCash">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Checking</span>
+            <strong id="checkingTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Savings</span>
+            <strong id="savingsTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span data-investment-label>Robinhood</span>
+            <strong id="investmentTotal">$0.00</strong>
+          </div>
+
+          <div class="metric">
+            <span>Monthly income</span>
+            <strong id="monthlyIncomeTotal">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="entry-section accounts-section" aria-label="Account balances">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Balances</p>
+            <h2>Current money by account</h2>
+          </div>
+          <button id="resetAccounts" type="button" class="ghost-button">Reset</button>
+        </div>
+
+        <section class="paycheck-panel" aria-label="Paycheck split">
+          <div>
+            <p class="eyebrow">Every two weeks</p>
+            <h3>Add paycheck</h3>
+          </div>
+
+          <form id="paycheckForm" class="paycheck-form">
+            <label class="field">
+              <span>Check amount</span>
+              <input id="paycheckAmount" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+            </label>
+
+            <div class="split-row">
+              <label class="field">
+                <span>First account</span>
+                <select id="firstSplitAccount">
+                  <option value="chase:checking">Chase checking</option>
+                  <option value="chase:savings">Chase savings</option>
+                  <option value="sofi:checking">SoFi checking</option>
+                  <option value="sofi:savings">SoFi savings</option>
+                  <option value="mission:checking">Mission checking</option>
+                  <option value="mission:savings">Mission savings</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Percent</span>
+                <input id="firstSplitPercent" type="number" min="0" max="100" step="1" value="60" />
+              </label>
+            </div>
+
+            <div class="split-row">
+              <label class="field">
+                <span>Second account</span>
+                <select id="secondSplitAccount">
+                  <option value="chase:checking">Chase checking</option>
+                  <option value="chase:savings">Chase savings</option>
+                  <option value="sofi:checking">SoFi checking</option>
+                  <option value="sofi:savings" selected>SoFi savings</option>
+                  <option value="mission:checking">Mission checking</option>
+                  <option value="mission:savings">Mission savings</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Percent</span>
+                <input id="secondSplitPercent" type="number" min="0" max="100" step="1" value="40" />
+              </label>
+            </div>
+
+            <div class="split-preview" aria-live="polite">
+              <span><span id="firstSplitLabel">Chase checking</span>: <strong id="firstSplitAmount">$0.00</strong></span>
+              <span><span id="secondSplitLabel">SoFi checking</span>: <strong id="secondSplitAmount">$0.00</strong></span>
+            </div>
+
+            <button type="submit" class="primary-button">Apply</button>
+          </form>
+        </section>
+
+        <section class="money-panel" aria-label="Add outside money">
+          <div>
+            <p class="eyebrow">Extra money</p>
+            <h3>Add money</h3>
+          </div>
+
+          <form id="extraMoneyForm" class="extra-money-form">
+            <label class="field">
+              <span>From</span>
+              <input id="moneySource" type="text" placeholder="Friend, cash, side job..." />
+            </label>
+
+            <label class="field">
+              <span>Account</span>
+              <select id="extraMoneyAccount">
+                <option value="chase:checking">Chase checking</option>
+                <option value="chase:savings">Chase savings</option>
+                <option value="sofi:checking">SoFi checking</option>
+                <option value="sofi:savings">SoFi savings</option>
+                <option value="mission:checking">Mission checking</option>
+                <option value="mission:savings">Mission savings</option>
+                <option value="robinhood:holding">Robinhood holdings</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Amount</span>
+              <input id="extraMoneyAmount" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+            </label>
+
+            <button type="submit" class="primary-button">Apply</button>
+          </form>
+        </section>
+
+        <form id="accountsForm" class="accounts-grid">
+          <section class="account-card" aria-label="Chase balances">
+            <div class="card-panel-heading">
+              <div>
+                <p class="eyebrow">Default</p>
+                <h3 data-bank-label="chase">Chase</h3>
+              </div>
+              <strong id="chaseTotal">$0.00</strong>
+            </div>
+
+            <label class="field">
+              <span>Checking</span>
+              <input id="chaseChecking" data-account="chase" data-kind="checking" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+
+            <label class="field">
+              <span>Savings</span>
+              <input id="chaseSavings" data-account="chase" data-kind="savings" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+          </section>
+
+          <section class="account-card" aria-label="SoFi balances">
+            <div class="card-panel-heading">
+              <div>
+                <p class="eyebrow">Account</p>
+                <h3 data-bank-label="sofi">SoFi</h3>
+              </div>
+              <strong id="sofiTotal">$0.00</strong>
+            </div>
+
+            <label class="field">
+              <span>Checking</span>
+              <input id="sofiChecking" data-account="sofi" data-kind="checking" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+
+            <label class="field">
+              <span>Savings</span>
+              <input id="sofiSavings" data-account="sofi" data-kind="savings" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+          </section>
+
+          <section class="account-card" aria-label="Mission balances">
+            <div class="card-panel-heading">
+              <div>
+                <p class="eyebrow">Account</p>
+                <h3 data-bank-label="mission">Mission</h3>
+              </div>
+              <strong id="missionTotal">$0.00</strong>
+            </div>
+
+            <label class="field">
+              <span>Checking</span>
+              <input id="missionChecking" data-account="mission" data-kind="checking" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+
+            <label class="field">
+              <span>Savings</span>
+              <input id="missionSavings" data-account="mission" data-kind="savings" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+          </section>
+
+          <section class="account-card" aria-label="Investing holdings">
+            <div class="card-panel-heading">
+              <div>
+                <p class="eyebrow">Investing</p>
+                <h3 data-investment-label>Robinhood</h3>
+              </div>
+              <strong id="robinhoodTotal">$0.00</strong>
+            </div>
+
+            <label class="field">
+              <span>Holdings</span>
+              <input id="robinhoodHolding" data-account="robinhood" data-kind="holding" type="number" min="0" step="0.01" placeholder="0.00" />
+            </label>
+          </section>
+        </form>
+      </section>
+    </main>
+
+    <script src="app-settings.js"></script>
+    <script src="accounts.js"></script>
+  </body>
+</html>
